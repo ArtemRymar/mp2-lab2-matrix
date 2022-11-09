@@ -31,6 +31,8 @@ public:
     }
     TDynamicVector(T* arr, size_t s) : sz(s)
     {
+        if ((sz <= 0) || (sz > MAX_VECTOR_SIZE))
+            throw out_of_range("Vector size should be greater than zero and less than max_size of vector");
         assert(arr != nullptr && "TDynamicVector ctor requires non-nullptr arg");
         pMem = new T[sz];
         std::copy(arr, arr + sz, pMem);
@@ -63,6 +65,9 @@ public:
     }
     TDynamicVector& operator=(TDynamicVector&& v) noexcept
     {
+        sz = 0;
+        delete[] pMem;
+        pMem = nullptr;
         swap(*this, v);
         return *this;
     }
