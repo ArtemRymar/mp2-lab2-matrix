@@ -155,7 +155,7 @@ public:
         }
         return tmp;
     }
-    T operator*(const TDynamicVector& v) noexcept(noexcept(T()))
+    T operator*(const TDynamicVector& v) 
     {
         if (sz != v.sz) throw out_of_range("Unequal sizes");
         T res = 0;
